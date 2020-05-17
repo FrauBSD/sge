@@ -52,6 +52,15 @@ WWW: https://www.fraubsd.org/sge
 %{__mkdir_p} %{TMPROOT}
 %{TAR} %{TARFROMFLAGS} %{_srcdir} %{TARFILES} | %{TAR} %{TARTOFLAGS} %{TMPROOT}
 
+%if "%{dist}" == ".el6"
+%define libcrypto libcrypto.so.1.0.1e
+%define libssl    libssl.so.1.0.1e
+%else
+%define libcrypto libcrypto.so.1.0.2k
+%define libssl    libssl.so.1.0.2k
+%define libdb     /opt/ge6.2/lib/lx-amd64/libdb.so
+%endif
+
 ############################################################ FILES STANZA
 
 %files
@@ -251,15 +260,14 @@ WWW: https://www.fraubsd.org/sge
 /opt/ge6.2/install_qmaster
 /opt/ge6.2/lib/lx-amd64/libXltree.so
 /opt/ge6.2/lib/lx-amd64/libcrypto.so
-/opt/ge6.2/lib/lx-amd64/libcrypto.so.1.0.2k
-/opt/ge6.2/lib/lx-amd64/libdb.so
+/opt/ge6.2/lib/lx-amd64/%{libcrypto}
 /opt/ge6.2/lib/lx-amd64/libdrmaa.so
 /opt/ge6.2/lib/lx-amd64/libdrmaa.so.1.0
 /opt/ge6.2/lib/lx-amd64/libjuti.so
 /opt/ge6.2/lib/lx-amd64/libspoolb.so
 /opt/ge6.2/lib/lx-amd64/libspoolc.so
 /opt/ge6.2/lib/lx-amd64/libssl.so
-/opt/ge6.2/lib/lx-amd64/libssl.so.1.0.2k
+/opt/ge6.2/lib/lx-amd64/%{libssl}
 /opt/ge6.2/man/man1/gethostbyaddr.1
 /opt/ge6.2/man/man1/gethostbyname.1
 /opt/ge6.2/man/man1/gethostname.1
@@ -697,6 +705,9 @@ WWW: https://www.fraubsd.org/sge
 /opt/ge6.2/utilbin/lx-amd64/testsuidroot
 /opt/ge6.2/utilbin/lx-amd64/uidgid
 /opt/ge6.2/utilbin/lx-amd64/valid_jvmlib
+%if %{?libdb:1}%{!?libdb:0}
+%{libdb}
+%endif
 
 ############################################################ FOOTER
 
