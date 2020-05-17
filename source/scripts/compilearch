@@ -164,6 +164,11 @@ case $buildarch in
       BUILDARCH=IRIX65
       TARGET_BITS=TARGET_64BIT
       ;;
+   lx-amd64)
+      BUILDARCH=LINUXAMD64
+      COMPILE_ARCH=LINUXAMD64
+      TARGET_BITS=TARGET_64BIT
+      ;;
    lx24-alpha)
       BUILDARCH=ALINUX
       COMPILE_ARCH=ALINUX_24

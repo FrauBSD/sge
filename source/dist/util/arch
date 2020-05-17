@@ -258,9 +258,8 @@ Linux)
    2.6.*)
       lxrelease=26
       ;;
-   3.*)
-      lxrelease=26
-      lxmachine=x86
+   3.*|4.*|5.*)
+      lxrelease=
       ;;
    *)
       unsupported="UNSUPPORTED-"

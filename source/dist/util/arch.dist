@@ -266,6 +266,9 @@ Linux)
          fi
       fi
       ;;
+   3.*|4.*|5.*)
+      lxrelease=
+      ;;
    *)
       unsupported="UNSUPPORTED-"
       lxrelease=$osrelease
