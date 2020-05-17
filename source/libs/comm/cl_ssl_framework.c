@@ -157,7 +157,11 @@ static void                 (*cl_com_ssl_func__ERR_clear_error)                 
 static int                  (*cl_com_ssl_func__BIO_free)                            (BIO *a);
 static BIO*                 (*cl_com_ssl_func__BIO_new_fp)                          (FILE *stream, int flags);
 static BIO*                 (*cl_com_ssl_func__BIO_new_socket)                      (int sock, int close_flag);
+#if OPENSSL_VERSION_NUMBER < 0x100020bfL
+static BIO*                 (*cl_com_ssl_func__BIO_new_mem_buf)                     (void *buf, int len);
+#else
 static BIO*                 (*cl_com_ssl_func__BIO_new_mem_buf)                     (const void *buf, int len);
+#endif
 static int                  (*cl_com_ssl_func__BIO_printf)                          (BIO *bio, const char *format, ...);
 static void                 (*cl_com_ssl_func__SSL_set_bio)                         (SSL *s, BIO *rbio,BIO *wbio);
 static int                  (*cl_com_ssl_func__SSL_accept)                          (SSL *ssl);
@@ -1170,7 +1174,11 @@ static int cl_com_ssl_build_symbol_table(void) {
       }
 
       func_name = "BIO_new_mem_buf";
+#if OPENSSL_VERSION_NUMBER < 0x100020bfL
+      cl_com_ssl_func__BIO_new_mem_buf = (BIO* (*)(void *buf, int len))dlsym(cl_com_ssl_crypto_handle, func_name);
+#else
       cl_com_ssl_func__BIO_new_mem_buf = (BIO* (*)(const void *buf, int len))dlsym(cl_com_ssl_crypto_handle, func_name);
+#endif
       if (cl_com_ssl_func__BIO_new_mem_buf == NULL) {
          CL_LOG_STR(CL_LOG_ERROR,"dlsym error: can't get function address:", func_name);
          had_errors++;

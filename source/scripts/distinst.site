@@ -32,6 +32,9 @@
 
 # Base directory where the openssl binary and libraries reside
 OPENSSLSOVERSION=1.0.2k
+case "${UNAME_r:=$( uname -r )}" in
+2.6.*) OPENSSLSOVERSION=1.0.1e ;;
+esac
 OPENSSLBASE=/usr
 
 # Base directory where BDB resides

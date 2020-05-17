@@ -256,7 +256,7 @@ Linux)
       fi
       ;;
    2.6.*)
-      lxrelease=26
+      lxrelease=
       ;;
    3.*|4.*|5.*)
       lxrelease=
