@@ -55,7 +55,7 @@ BDBUTILITYBINARIES="berkeley_db_svc db_archive db_checkpoint db_deadlock db_dump
 
 SSLUTILITYBINARIES="openssl"
 
-REMOTEBINARIES=
+REMOTEBINARIES="rsh rshd rlogin"
 
 JOBBINARIES="work showq"
 
@@ -89,7 +89,7 @@ PVMSRCSCRIPTS="install.sh aimk"
 PVMSCRIPTS="startpvm.sh stoppvm.sh pvm.sh pvm_nogs.sh README pvm.template"
 
 MPI_FILES="README README.atm mpi.template mpich.template"
-MPI_SCRIPTS="hostname  mpi.sh mpi_cpi.sh startmpi.sh stopmpi.sh"
+MPI_SCRIPTS="hostname  mpi.sh mpi_cpi.sh rsh startmpi.sh stopmpi.sh"
 
 HADOOP_FILES="logging.properties"
 HADOOP_SCRIPTS="env.sh jsv.sh load_sensor.sh make_conf.sh pestart.sh pestop.sh setup.pl ssh wait.sh"
