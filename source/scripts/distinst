@@ -42,7 +42,7 @@ HASARCHDIR="bin lib examples/jobsbin utilbin"
 
 DEFAULTPROG="sge_qmaster sge_execd sge_shadowd \
              sge_shepherd sge_coshepherd qstat qsub qalter qconf qdel \
-             qacct qmod qsh utilbin jobs qmon qhost qmake qtcsh qping \
+             qacct qmod qsh utilbin jobs qmon qhost qtcsh qping \
              qloadsensor.exe sgepasswd qquota qrsub qrstat qrdel"
 
 UTILITYBINARIES="uidgid gethostname gethostbyname gethostbyaddr \
@@ -55,7 +55,7 @@ BDBUTILITYBINARIES="berkeley_db_svc db_archive db_checkpoint db_deadlock db_dump
 
 SSLUTILITYBINARIES="openssl"
 
-REMOTEBINARIES="rsh rshd rlogin"
+REMOTEBINARIES=
 
 JOBBINARIES="work showq"
 
@@ -69,7 +69,7 @@ QMON_SHARED_LIBRARIES="libXbae libXicon libXmt libXspin libXtab"
 QMON_NEED_SHARED_LIBRARIES="libXltree"
 OPENSSL_SHARED_LIBRARIES="libcrypto libssl"
 
-BERKELEYDB_SHARED_LIBRARIES="libdb-4.4"
+BERKELEYDB_SHARED_LIBRARIES="libdb"
 
 DRMAA_SHARED_LIBRARIES="libdrmaa"
 # The last number listed here will be the verson linked from libdrmaa.so
@@ -82,14 +82,14 @@ JNI_SHARED_LIBRARIES="libdrmaa libjuti libjgdi"
 JUTIJ_FILES="CLASSES/juti/juti"
 JGDIJ_FILES="libs/jgdi/build/jgdi"
 JJSV_FILES="CLASSES/jjsv/JSV"
-JAVA_LIBRARIES="${DRMAAJ_FILES} ${JUTIJ_FILES} ${JGDIJ_FILES} ${JJSV_FILES}"
+JAVA_LIBRARIES=
 
 PVMSOURCES="start_pvm.c stop_pvm.c slave.c master.c spmd.c Makefile"
 PVMSRCSCRIPTS="install.sh aimk"
 PVMSCRIPTS="startpvm.sh stoppvm.sh pvm.sh pvm_nogs.sh README pvm.template"
 
 MPI_FILES="README README.atm mpi.template mpich.template"
-MPI_SCRIPTS="hostname  mpi.sh mpi_cpi.sh rsh startmpi.sh stopmpi.sh"
+MPI_SCRIPTS="hostname  mpi.sh mpi_cpi.sh startmpi.sh stopmpi.sh"
 
 HADOOP_FILES="logging.properties"
 HADOOP_SCRIPTS="env.sh jsv.sh load_sensor.sh make_conf.sh pestart.sh pestop.sh setup.pl ssh wait.sh"
@@ -796,6 +796,9 @@ for prog in $PROG; do
    esac
 done
 
+insthadoop=false
+instarco=false
+instguiinst=false
 
 # ------------------ Install common files ------------------
 #
@@ -842,11 +845,6 @@ if [ $instcommon = true ]; then
          Execute sed -e "s/#ENFORCE_SHLIBPATH#//" dist/util/rctemplates/sgeexecd_template > $DEST_SGE_ROOT/util/rctemplates/sgeexecd_template
          Execute sed -e "s/#ENFORCE_SHLIBPATH#//" dist/util/rctemplates/sgebdb_template > $DEST_SGE_ROOT/util/rctemplates/sgebdb_template
          Execute sed -e "s/#ENFORCE_SHLIBPATH#//" dist/util/install_modules/inst_common.sh > $DEST_SGE_ROOT/util/install_modules/inst_common.sh
-      fi
-
-      # DetectJvmLibrary
-      if [ -f dist/DetectJvmLibrary/build/jar/DetectJvmLibrary.jar ]; then
-         Execute cp dist/DetectJvmLibrary/build/jar/DetectJvmLibrary.jar $DEST_SGE_ROOT/util
       fi
 
       # JSV Java language binding
@@ -898,7 +896,6 @@ if [ $instcommon = true ]; then
                         $DEST_SGE_ROOT/util/sgeCA/*.cnf \
                         $DEST_SGE_ROOT/util/sgeSMF/*.xml \
                         $DEST_SGE_ROOT/util/sgeSMF/sge_smf_support.sh \
-                        $DEST_SGE_ROOT/util/DetectJvmLibrary.jar \
                         $DEST_SGE_ROOT/util/resources/calendars/* \
                         $DEST_SGE_ROOT/util/resources/centry/* \
                         $DEST_SGE_ROOT/util/resources/pe/* \
@@ -1550,6 +1547,12 @@ for i in $ARCH; do
                   libname=$OPENSSLBASE/$DSTARCH/lib/$libname
                elif [ -f $OPENSSLBASE/lib/$libname ]; then
                   libname=$OPENSSLBASE/lib/$libname
+               elif [ -f $OPENSSLBASE/$DSTARCH/lib64/$libname ]; then
+                  libname=$OPENSSLBASE/$DSTARCH/lib64/$libname
+               elif [ -f $OPENSSLBASE/lib64/$libname ]; then
+                  libname=$OPENSSLBASE/lib64/$libname
+               elif [ -f $OPENSSLBASE/$libname ]; then
+                  libname=$OPENSSLBASE/$libname
                fi
 
                if [ -f $libname ]; then
@@ -1578,6 +1581,12 @@ for i in $ARCH; do
                      libname=$BERKELEYDBBASE/$DSTARCH/lib/$libname
                   elif [ -f $BERKELEYDBBASE/lib/$libname ]; then
                      libname=$BERKELEYDBBASE/lib/$libname
+                  elif [ -f $BERKELEYDBBASE/$DSTARCH/lib64/$libname ]; then
+                     libname=$BERKELEYDBBASE/$DSTARCH/lib64/$libname
+                  elif [ -f $BERKELEYDBBASE/lib64/$libname ]; then
+                     libname=$BERKELEYDBBASE/lib64/$libname
+                  elif [ -f $BERKELEYDBBASE/$libname ]; then
+                     libname=$BERKELEYDBBASE/$libname
                   fi
 
                   if [ -f $libname ]; then

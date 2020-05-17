@@ -241,6 +241,13 @@ else
    set INP_CFLAGS    = ""
 endif
 
+# SGE_INPUT_LDFLAGS will be taken from environment and added to LFLAGS
+if ( $?SGE_INPUT_LDFLAGS ) then
+   set INP_LFLAGS    = "$SGE_INPUT_LDFLAGS"
+else
+   set INP_LFLAGS    = ""
+endif
+
 # Default build targets for which we have seperate make files
 set SGE_DEPEND       = 0
 set QMON             = 1
@@ -293,7 +300,7 @@ set JNI_TARGET       = "ALL"
 set PROTECTED        = 0
 set RUNPATH          = ""
 
-set LFLAGS           = "-L."
+set LFLAGS           = "-L. $INP_LFLAGS"
 set XLFLAGS          = ""
 set XLIBS            = ""
 set LIBS             = "-lm -lpthread"
@@ -312,8 +319,8 @@ set DUMP             = 1
 set SHAREDLIBS       = 0
 set SHAREDEXT        = ".so"
 set SHAREDLD         = ""
-set SHARED_CFLAGS    = ""
-set SHARED_LFLAGS    = ""
+set SHARED_CFLAGS    = "$INP_CFLAGS"
+set SHARED_LFLAGS    = "$INP_LFLAGS"
 
 # linker flag for -ldrmaa name and version
 set SONAME_LFLAG_DRMAA10 = ""
@@ -355,7 +362,7 @@ set INTERACTTARGETS   = "qmake qtcsh"
 set SEC               = 1
 set SECFLAGS          = "-DSECURE -I$OPENSSL_HOME/include"
 set SECLIB            = ""
-set SECLIBS_STATIC    = "$OPENSSL_HOME/lib/libssl.a $OPENSSL_HOME/lib/libcrypto.a"
+set SECLIBS_STATIC    = "/usr/lib64/libssl.a /usr/lib64/libcrypto.a -lz -lkrb5 -lk5crypto"
 set KLFLAGS           = "-L$OPENSSL_HOME/lib"
 
 set CORELIB           = ""
