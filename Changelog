@@ -1,0 +1,60 @@
+################################################################################
+# This is the Changelog for Open Grid Scheduler source code changes.           #
+#                                                                              #
+#                ===== PLEASE DO NOT DELETE THIS HEADER ====                   #
+################################################################################
+          1         2         3         4         5         6         7
+01234567890123456789012345678901234567890123456789012345678901234567890123456789
+
+-------------------------------------------------------------------------------
+
+RH-2011-04-01-0: CVS:         OGS 6.2u5p2
+
+RC-2011-03-27-0: Cleanup:     more cleanups
+
+RC-2011-03-22-0: Bugfix:      Perl jsv throws error if job argument contains
+                              comma
+                 Issue:       3266
+
+RC-2011-03-19-0: Cleanup:     misc. cleanup
+
+RH-2011-03-18-0: Bugfix:      jsv logging does not work when multiple users
+                              submit jobs on same submit host
+                 Issue:       3228
+
+RH-2011-03-14-1: Bugfix:      free()-hook for glibc is also needed in our 
+                              jemalloc library
+                              (merged from Mozilla 493541 & SGE SH-2010-01-05-1)
+
+RH-2011-03-14-0: Bugfix:      rerun of a tightly integrated parallel job crashes
+                              qmaster after restart
+                              (merged from JG-2009-12-28-0)
+                 Bugster:     6912529
+                 Issue:       3216
+                 Review:      HP
+
+RH-2011-03-08-0: Cleanup:     LINUX Macro
+                 Review:      RC
+
+RH-2011-03-07-0: Enhancem.    checkin the S/390 port done by Rayson Ho
+                              and Uriel Carrasquilla
+                              (based on RC-2011-02-25)
+                 Review:      RC
+
+-------------------------------------------------------------------------------
+
+RH-2011-02-25-0: CVS:         created trunk, tags, branches (OGS 6.2u5p1)
+
+SD-2010-09-15-0: Bugfix:      slotwise preemption fails to unsuspend one job 
+                              per host
+                 SGE Issue:   3233
+
+RH-2010-09-09-0: Bugfix:      vmem error workaround
+
+RH-2010-08-22-0: Bugfix:      compilation error on Linux
+                 SGE Issue:   2980
+                 Ubuntu Bug:  496689
+
+-------------------------------------------------------
+
+RC-2010-08-18-0: CVS:         created from V62u5_TAG
