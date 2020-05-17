@@ -753,9 +753,9 @@ void son(const char *childname, char *script_file, int truncate_stderr_out)
    /* open stdout - not for interactive jobs */
    if (!is_interactive && !is_qlogin) {
       if (truncate_stderr_out) {
-         out = SGE_OPEN2(stdout_path, O_WRONLY | O_CREAT | O_APPEND | O_TRUNC);
+         out = SGE_OPEN3(stdout_path, O_WRONLY | O_CREAT | O_APPEND | O_TRUNC, 0666);
       } else {
-         out = SGE_OPEN2(stdout_path, O_WRONLY | O_CREAT | O_APPEND);
+         out = SGE_OPEN3(stdout_path, O_WRONLY | O_CREAT | O_APPEND, 0666);
       }
       
       if (out==-1) {
@@ -774,9 +774,9 @@ void son(const char *childname, char *script_file, int truncate_stderr_out)
          dup2(1, 2);
       } else {
          if (truncate_stderr_out) {
-            err = SGE_OPEN2(stderr_path, O_WRONLY | O_CREAT | O_TRUNC | O_APPEND);
+            err = SGE_OPEN3(stderr_path, O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0666);
          } else {
-            err = SGE_OPEN2(stderr_path, O_WRONLY | O_CREAT | O_APPEND);
+            err = SGE_OPEN3(stderr_path, O_WRONLY | O_CREAT | O_APPEND, 0666);
          }
 
          if (err == -1) {
