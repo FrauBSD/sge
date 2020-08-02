@@ -4,24 +4,25 @@
 #
 # $Title: Script to build SGE and install it to package sandbox $
 # $Copyright: 2019-2020 Devin Teske. All rights reserved. $
-# $FrauBSD: sge/build_fraubsd.sh 2020-05-17 14:23:12 -0700 freebsdfrau $
+# $FrauBSD: sge/build_fraubsd.sh 2020-08-02 01:05:34 -0700 freebsdfrau $
 #
 ############################################################ CONFIGURATION
 
 DESTDIR=install/opt/ge6.2
 case "${UNAME_r:=$( uname -r )}" in
 2.*)
-	JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.261.x86_64
 	JAVA_PKG=java-1.7.0-openjdk-devel
 	DB4=db4
 	MOTIF=openmotif
 	;;
 *)
-	JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.el7_8.x86_64
 	JAVA_PKG=java-1.8.0-openjdk-devel
 	DB4=libdb4
 	MOTIF=motif
 esac
+JAVA_HOME=$( rpm -ql "$JAVA_PKG" |
+	awk 'sub("/include/jni\\.h$", "") { print; exit }' )
+[ "$JAVA_HOME" ] || exit
 
 ############################################################ GLOBALS
 
