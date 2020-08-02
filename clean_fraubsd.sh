@@ -3,7 +3,7 @@
 #
 # $Title: Script to clean SGE $
 # $Copyright: 2019-2020 Devin Teske. All rights reserved. $
-# $FrauBSD: sge/clean_fraubsd.sh 2020-05-17 11:49:53 -0700 freebsdfrau $
+# $FrauBSD: sge/clean_fraubsd.sh 2020-08-02 10:07:43 -0700 freebsdfrau $
 #
 ############################################################ GLOBALS
 
@@ -29,6 +29,7 @@ eval2()
 set -e
 for item in \
 	install \
+	source/*/*.o \
 	source/*/*/*/*_dependencies \
 	source/*/*/*_dependencies \
 	source/*/*_dependencies \
