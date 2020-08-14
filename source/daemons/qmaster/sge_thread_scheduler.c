@@ -694,6 +694,11 @@ sge_scheduler_main(void *arg)
                sge_dstring_free(&ds);
             }
 
+            if (getenv("SGE_ND")) {
+               printf("-------------START-SCHEDULER-RUN-------------\n");
+               fflush(stdout);
+            }
+
             /*
              * If there were new events then
              * copy/filter data necessary for the scheduler run
@@ -847,6 +852,7 @@ sge_scheduler_main(void *arg)
                   lGetNumberOfNodes(NULL, copy.share_tree, STN_children),
                   lGetNumberOfLeafs(NULL, copy.share_tree, STN_children)
                  );
+               fflush(stdout);
             } else {
                schedd_log("-------------START-SCHEDULER-RUN-------------", NULL, evc->monitor_next_run);
             }
@@ -919,6 +925,7 @@ sge_scheduler_main(void *arg)
             }
             if (getenv("SGE_ND") != NULL) {
                printf("--------------STOP-SCHEDULER-RUN-------------\n");
+               fflush(stdout);
             } else {
                schedd_log("--------------STOP-SCHEDULER-RUN-------------", NULL, evc->monitor_next_run);
             }
