@@ -580,6 +580,7 @@ sge_process_job_event_before(sge_evc_class_t *evc, object_description *object_ba
       case SGE_EMA_MOD:
          switch (lGetUlong(event, ET_type)) {
             case sgeE_JOB_MOD:
+            case sgeE_JOB_MOD_SCHED_PRIORITY:
                sge_delete_job_category(job);
             break;
 
@@ -650,6 +651,7 @@ sge_process_job_event_after(sge_evc_class_t *evc, object_description *object_bas
       case SGE_EMA_MOD:
          switch (lGetUlong(event, ET_type)) {
             case sgeE_JOB_MOD:
+            case sgeE_JOB_MOD_SCHED_PRIORITY:
                /*
                ** after changing the job, read category reference 
                ** for changed job
@@ -685,9 +687,6 @@ sge_process_job_event_after(sge_evc_class_t *evc, object_description *object_bas
                      lSetUlong(ja_task, JAT_status, JFINISHED);
                   }
                }
-               break;
-
-            case sgeE_JOB_MOD_SCHED_PRIORITY:
                break;
 
             default:

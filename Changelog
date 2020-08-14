@@ -8,6 +8,9 @@
 
 -------------------------------------------------------------------------------
 
+DT-2020-08-02-0: Bugfix:      Prevent crash when using JC_FILTER=1
+                 Review:      SK, AO
+
 GA-2019-11-29-1: Bugfix:      Make GA-2019-11-29-0 consider umask
                  Review:      DT
 
