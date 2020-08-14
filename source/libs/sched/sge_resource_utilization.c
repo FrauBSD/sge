@@ -361,7 +361,7 @@ int utilization_add(lListElem *cr, u_long32 start_time, u_long32 duration, doubl
 
 #if 1
    utilization_print(cr, "pe_slots");
-   printf("this was before utilization_normalize()\n");
+   DPRINTF(("this was before utilization_normalize()\n"));
 #endif
 
    utilization_normalize(resource_diagram);
