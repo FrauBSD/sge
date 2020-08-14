@@ -8,6 +8,26 @@
 
 -------------------------------------------------------------------------------
 
+GA-2019-11-29-1: Bugfix:      Make GA-2019-11-29-0 consider umask
+                 Review:      DT
+
+GA-2019-11-29-0: Bugfix:      Fix GA-2019-11-27-0 undefined file mode behavior
+                 Review:      DT
+
+GA-2019-11-27-0: Bugfix:      Fix default UNIX permissions of job stdout/stderr
+                              logs
+                 Review:      DT
+
+DT-2019-03-21-0: Bugfix:      Revert branding, logo, pixmaps to SGE
+
+DT-2019-03-20-0: Bugfix:      Upgrade to OpenSSL 1.0.2k and CentOS 7.6
+
+-------------------------------------------------------
+
+RC-2019-03-16-0: GIT:         Created from OGS 6.2u5p2
+
+-------------------------------------------------------------------------------
+
 RH-2011-04-01-0: CVS:         OGS 6.2u5p2
 
 RC-2011-03-27-0: Cleanup:     more cleanups
