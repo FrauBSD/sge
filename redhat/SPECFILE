@@ -10,7 +10,7 @@ Group: Applications/Engineering
 Summary: Sun Grid Engine (SGE)
 License: Sun
 Version: 6.2u5p2
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 URL: https://www.fraubsd.org/sge
 Packager: Devin Teske <dteske@freebsd.org>
@@ -737,5 +737,19 @@ done
 
 
 %changelog
+* Fri Aug 14 2020 Devin Teske <dteske@fraubsd.org> 6.2u5p2-2
+- 79bbc2a DT-2020-08-02-1: Enhancem: Partially revert RD-2008-08-08-1 29dfb0c
+- 5788e0f DT-2020-08-02-0: Bugfix: - Prevent crash when using JC_FILTER=1
+- 7f827c8 qmaster: Add support for SGE_DEBUG_LEVEL in startup script
+- d879b9f qmaster: Fix a debug message using printf instead of DPRINTF
+- 9bb26cc qmaster: Add missing log message and fflush for debugging
+- 0c5021b qmaster: Fix double-newline in startup warning
+- 727a776 qmaster: Fix double-newline in job event warning
+- 776274c filters: Alphabetize keyword file types and add Unicode
+- 5832f52 Update Changelog, bringing it in-sync with current code
+- bfc5b92 hooks: Update keyword expansions
+- 4348938 filters: Fix RCSfile and Date keywords to be RCS-like
+- bfdc783 Add .o files to clean script
+- 58af953 Use rpm query to determine correct JAVA_HOME for build
 * Sun May 17 2020 Devin Teske <dteske@fraubsd.org> 6.2u5p2-1
 - Package created.
