@@ -8,6 +8,9 @@
 
 -------------------------------------------------------------------------------
 
+DT-2020-08-02-1: Enhancem:    Partially revert RD-2008-08-08-1 29dfb0c
+                              JC_FILTER made production-safe
+
 DT-2020-08-02-0: Bugfix:      Prevent crash when using JC_FILTER=1
                  Review:      SK, AO
 

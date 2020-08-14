@@ -4,7 +4,7 @@
 .\" Copyright: 2004 by Sun Microsystems, Inc.
 .\"
 .\"___INFO__MARK_END__
-.\" $RCSfile: sched_conf.5,v $     Last Update: $Date: 2009/07/08 14:42:40 $     Revision: $Revision: 1.39 $
+.\" $RCSfile: sched_conf.5,v $     Last Update: $Date: 2020/08/14 15:01:05 $     Revision: $Revision: 1.40 $
 .\"
 .\"
 .\" Some handy macro definitions [from Tom Christensen's man(1) manual page].
@@ -29,7 +29,7 @@
 .de M		\" man page reference
 \\fI\\$1\\fR\\|(\\$2)\\$3
 ..
-.TH SCHED_CONF 5 "$Date: 2009/07/08 14:42:40 $" "xxRELxx" "xxQS_NAMExx File Formats"
+.TH SCHED_CONF 5 "$Date: 2020/08/14 15:01:05 $" "xxRELxx" "xxQS_NAMExx File Formats"
 .\"
 .SH NAME
 sched_conf \- xxQS_NAMExx default scheduler configuration file
@@ -359,9 +359,6 @@ If the offset is too low, resource reservations (see \fBmax_reservation\fP)
 can be delayed repeatedly due to an overly optimistic job circulation time.
 .\"
 .IP "\fIJC_FILTER\fP"
-.B Note:
-Deprecated, may be removed in future release.
-.br
 If set to true, the scheduler limits the number of jobs it looks at during
 a scheduling run. At the beginning of the scheduling run it assigns each
 job a specific category, which is based on the job's requests, priority
