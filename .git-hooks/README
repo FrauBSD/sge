@@ -1,4 +1,4 @@
-# $FrauBSD: sge/.git-hooks/README 2020-05-17 11:40:05 -0700 freebsdfrau $
+# $FrauBSD: sge/.git-hooks/README 2020-08-14 14:47:29 -0700 freebsdfrau $
 
 !! ATTENTION DEVELOPERS AND CONTRIBUTORS !!
 
@@ -13,11 +13,11 @@ Supported keywords:
 
 	$Author: freebsdfrau $
 	$Branch: master $
-	$Date: 2020-05-17 11:40:05 -0700 $
-	$Header: .git-hooks/README 2020-05-17 11:40:05 -0700 freebsdfrau $
+	$Date: 2020/08/14 14:47:29 $
+	$Header: .git-hooks/README 2020-08-14 14:47:29 -0700 freebsdfrau $
 	$Origin: https://github.com/FrauBSD/sge.git $
 	$Project: //github.com/FrauBSD/sge.git $
-	$RCSfile: README $
+	$RCSfile: README,v $
 	$Source: .git-hooks/README $
-	$FrauBSD: sge/.git-hooks/README 2020-05-17 11:40:05 -0700 freebsdfrau $
+	$FrauBSD: sge/.git-hooks/README 2020-08-14 14:47:29 -0700 freebsdfrau $
 
