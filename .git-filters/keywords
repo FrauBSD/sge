@@ -116,10 +116,11 @@ for file in "$@"; do
 	#
 	case "$( file -b "$file" 2> /dev/null )" in
 		*ASCII*text*) : fall through ;;
+		*document*text) : fall through ;;
+		*program*text*) : fall through ;;
 		*script*text*) : fall through ;;
 		*source*text*) : fall through ;;
-		*program*text*) : fall through ;;
-		*document*text) : fall through ;;
+		*Unicode*text*) : fall through ;;
 		*)
 			DEBUG "$gitfile (skipped)"
 			continue
@@ -209,7 +210,7 @@ done
 # END
 ################################################################################
 #
-# $Copyright: 2015-2019 The FrauBSD Project. All rights reserved. $
-# $FrauBSD: sge/.git-filters/keywords 2020-08-14 14:46:26 -0700 freebsdfrau $
+# $Copyright: 2015-2020 The FrauBSD Project. All rights reserved. $
+# $FrauBSD: sge/.git-filters/keywords 2020-08-14 15:03:27 -0700 freebsdfrau $
 #
 ################################################################################
