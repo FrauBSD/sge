@@ -31,12 +31,12 @@ KEYWORDS="
 #
 _Author='$NAME'
 _Branch='$BRANCH'
-_Date='$DATE'
+_Date='$_DATE'
 _FrauBSD='${REPO#*FrauBSD/}/$gitfile $DATE $NAME'
 _Header='$gitfile $DATE $NAME'
 _Origin='$ORIGIN'
 _Project='$PROJECT'
-_RCSfile='${gitfile##*/}'
+_RCSfile='${gitfile##*/},v'
 _Source='$gitfile'
 
 ############################################################ GLOBALS
@@ -44,8 +44,12 @@ _Source='$gitfile'
 #
 # Required parts
 #
-NAME=$( git config user.name ) DATE=$( date +"%F %T %z" )
-: ${NAME:=unknown} ${DATE:=0000-00-00 00:00:00 -0000}
+NAME=$( git config user.name )
+: ${NAME:=unknown}
+DATE=$( date +"%F %T %z" )
+: ${DATE:=0000-00-00 00:00:00 -0000}
+_DATE=$( date +"%Y/%m/%d %T" )
+: ${_DATE:=0000/00/00 00:00:00}
 
 #
 # Command-line options
@@ -206,6 +210,6 @@ done
 ################################################################################
 #
 # $Copyright: 2015-2019 The FrauBSD Project. All rights reserved. $
-# $FrauBSD: sge/.git-filters/keywords 2020-05-17 11:40:05 -0700 freebsdfrau $
+# $FrauBSD: sge/.git-filters/keywords 2020-08-14 14:46:26 -0700 freebsdfrau $
 #
 ################################################################################
