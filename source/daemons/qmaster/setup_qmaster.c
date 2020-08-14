@@ -1290,7 +1290,7 @@ remove_invalid_job_references(bool job_spooling, int user, object_description *o
          jobid = lGetUlong(upu, UPU_job_number);
          if (!job_list_locate(*(object_type_get_master_list(SGE_TYPE_JOB)), jobid)) {
             lRemoveElem(lGetList(up, debited_job_usage_key), &upu);
-            WARNING((SGE_EVENT, "removing reference to no longer existing job "sge_u32" of %s "SFQ"\n",
+            WARNING((SGE_EVENT, "removing reference to no longer existing job "sge_u32" of %s "SFQ,
                            jobid, object_name, lGetString(up, object_key)));
             spool_me = 1;
          }
