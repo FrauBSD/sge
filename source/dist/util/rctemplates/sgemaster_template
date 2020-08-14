@@ -84,6 +84,7 @@ PATH=/bin:/usr/bin:/sbin:/usr/sbin
 
 SGE_ROOT=GENROOT; export SGE_ROOT
 SGE_CELL=GENCELL; export SGE_CELL
+#SGE_DEBUG_LEVEL="0 0 0 0 0 0 0 0"; export SGE_DEBUG_LEVEL
 SGE_QMASTER_PORT=GENSGE_QMASTER_PORT; export SGE_QMASTER_PORT 
 SGE_EXECD_PORT=GENSGE_EXECD_PORT; export SGE_EXECD_PORT
 
@@ -638,7 +639,12 @@ if [ "$startup" = true ]; then
          #For -migrate with SMF qmaster_host is not yet set for SMF start (2nd)
          elif [ $qmaster_host = true -o \( -n "$SMF_FMRI" -a "$SMF_FMRI" = "$service" \) ]; then
             echo "   starting sge_qmaster"
-            $bin_dir/sge_qmaster
+            if [ "$SGE_DEBUG_LEVEL" ]; then
+               export SGE_ND=1 SGE_DEBUG_LEVEL
+               nohup $bin_dir/sge_qmaster >> /var/log/GENSGESVC.log 2>&1 &
+            else
+               $bin_dir/sge_qmaster
+            fi
             [ $? -eq 0 -a -d /var/lock/subsys ] && touch /var/lock/subsys/sgemaster >/dev/null 2>&1
             CheckRunningQmaster
             exit_val=$?
