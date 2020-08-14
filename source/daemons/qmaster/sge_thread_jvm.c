@@ -694,7 +694,7 @@ sge_run_jvm(sge_gdi_ctx_class_t *ctx, void *anArg, monitoring_t *monitor)
       DPRINTF(("++ management.properties: %s\n", sge_dstring_get_string(&ds)));
       if (sge_get_management_entry(sge_dstring_get_string(&ds), NUM_PROPS, NUM_PROPS, name, 
                                     value, &error_dstring)) {
-         WARNING((SGE_EVENT, "could not read keystore path %s\n", sge_dstring_get_string(&error_dstring)));
+         WARNING((SGE_EVENT, "could not read keystore path %s", sge_dstring_get_string(&error_dstring)));
          sge_dstring_free(&error_dstring);
          sge_dstring_free(&ds);
          FREE(libjvm_path);
